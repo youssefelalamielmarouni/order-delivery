@@ -47,6 +47,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        parent::boot();
+
+        Request::macro('user', function ($guard = null) {
+            return auth($guard ?? 'api')->user();
+        });
     }
 
     /**
