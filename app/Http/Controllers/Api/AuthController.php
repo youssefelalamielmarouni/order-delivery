@@ -40,8 +40,11 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $user = auth()->user();
+
         return response()->json([
-            'user' => auth()->user(),
+            'user' => $user,
+            'role' => $user->role,
             'token' => $token
         ]);
     }
